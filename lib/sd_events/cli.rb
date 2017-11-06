@@ -1,9 +1,10 @@
-class SDEvents::CLI
+class SdEvents::CLI
 
   def call
     puts "Today's Events in San Diego:"
     list_events
     goodbye
+    menu
   end
 
   def list_events
@@ -31,12 +32,12 @@ class SDEvents::CLI
 
     end
   end
+end
 
   def goodbye
     puts "Goodbye!"
   end
 
-  end
 
 
 end

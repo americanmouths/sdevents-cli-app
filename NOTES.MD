@@ -1,0 +1,7 @@
+- A command line interface for daily events in San Diego, starting with dosd.com
+- Greets user
+- Asks if they would like to see all events for today in San Diego
+- Lists all events by number
+- Can select number which displays venue, time, ticket availablity
+- Asks if they would like more info
+  - Displays bio/additl info
