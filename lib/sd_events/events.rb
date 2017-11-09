@@ -1,5 +1,5 @@
 class SdEvents::Events
-  attr_accessor :name, :venue, :time, :add_info, :url, :availability
+  attr_accessor :name, :venue, :time
   @@all = []
 
   def self.all
