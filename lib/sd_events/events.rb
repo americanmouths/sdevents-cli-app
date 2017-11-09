@@ -1,23 +1,21 @@
 class SdEvents::Events
-  attr_accessor :name, :venue, :time, :availability
+  attr_accessor :name, :venue, :time, :add_info, :url, :availability
+  @@all = []
 
-  def self.today
-    #return a bunch of instances of events
-
-    event_1 = self.new
-    event_1.name = "Halsey Hopeless Fountain Kingdom"
-    event_1.venue = "Viejas Arena"
-    event_1.time = "7:00PM"
-    event_1.availability = true
-
-    event_2 = self.new
-    event_2.name = "Cults"
-    event_2.venue = "The Irenic"
-    event_2.time = "6:30PM"
-    event_2.availability = true
-
-    [event_1, event_2]
-
+  def self.all
+    @@all << self.scrape_events
   end
+
+  def self.scrape_events
+    doc = Nokogiri::HTML(open("https://www.sandiegoreader.com/events/#"))
+    e = self.new
+    doc.search(".event_list").collect do |events|
+      e.name = events.search(".event_list .title h4").text
+      e.venue = events.search("h5 a").text.strip
+      e.time = events.search(".time").text.strip
+    end
+    e
+  end
+
 
 end
