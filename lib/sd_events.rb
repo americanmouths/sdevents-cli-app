@@ -1,6 +1,6 @@
-#require 'open-uri'
+require 'open-uri'
 require 'pry'
-#require 'nokogiri'
+require 'nokogiri'
 
 require_relative "./sd_events/version"
 require_relative './sd_events/cli'
