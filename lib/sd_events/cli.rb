@@ -1,7 +1,6 @@
 class SdEvents::CLI
 
   def call
-    puts "Today's Events in San Diego:"
     list_events
     menu
     goodbye
@@ -11,9 +10,8 @@ class SdEvents::CLI
     puts ""
     puts "****** Now Happening in San Diego *******"
     puts ""
-    @events = SdEvents::Events.today
-    @events.each.with_index(1) do |event, i|
-      puts "#{i}. #{event.name} - #{event.venue} - #{event.time} - #{event.availability}"
+    SdEvents::Events.all.each.with_index(1) do |event, i|
+      puts "#{i}. #{event.name} - #{event.venue} - #{event.time}"
     end
   end
 
@@ -24,8 +22,8 @@ class SdEvents::CLI
       input = gets.strip.downcase
 
       if input.to_i > 0
-        the_event = @events[input.to_i-1]
-        puts "#{the_event.name} - #{the_event.venue} - #{the_event.time} - #{the_event.availability}"
+        the_event = SdEvents::Events.all[input.to_i-1]
+        puts "#{the_event.name} - #{the_event.venue} - #{the_event.time}"
       elsif input == "list"
         list_events
       else
@@ -35,9 +33,7 @@ class SdEvents::CLI
 end
 
   def goodbye
-    puts "See you tomorrow for some events."
+    puts "See you tomorrow for some more events."
   end
-
-
 
 end
