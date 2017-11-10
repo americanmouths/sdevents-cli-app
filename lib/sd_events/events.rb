@@ -2,20 +2,19 @@ class SdEvents::Events
   attr_accessor :name, :venue, :time
   @@all = []
 
-  def self.all
-    @@all << self.scrape_events
+  def initialize(event_hash)
+    event_hash.each{|key, value| self.send(("#{key}="), value)}
+    @@all << self
   end
 
-  def self.scrape_events
-    doc = Nokogiri::HTML(open("https://www.sandiegoreader.com/events/#"))
-    e = self.new
-    doc.search(".event_list").collect do |events|
-      e.name = events.search(".event_list .title h4").text
-      e.venue = events.search("h5 a").text.strip
-      e.time = events.search(".time").text.strip
+  def self.create_from_collection(events_array)
+    events_array.each do |event_hash|
+    self.new(event_hash)
     end
-    e
   end
 
+  def self.all
+    @@all
+  end
 
 end
