@@ -13,6 +13,21 @@ class SdEvents::Events
     end
   end
 
+  def self.create_morning_events
+    event_array = SdEvents::Scraper.scrape_morning
+    self.create_from_collection(event_array)
+  end
+
+  def self.create_afternoon_events
+    event_array = SdEvents::Scraper.scrape_afternoon
+    self.create_from_collection(event_array)
+  end
+
+  def self.create_evening_events
+    event_array = SdEvents::Scraper.scrape_evening
+    self.create_from_collection(event_array)
+  end
+
   def self.all
     @@all
   end
