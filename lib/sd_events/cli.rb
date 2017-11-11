@@ -23,6 +23,7 @@ class SdEvents::CLI
     elsif input == "2"
       SdEvents::Events.create_afternoon_events
       display_events
+      event_menu
 
     elsif input == "3"
       SdEvents::Events.create_evening_events
@@ -41,6 +42,15 @@ class SdEvents::CLI
     SdEvents::Events.all.each.with_index(1) do |event, i|
       puts "#{i}. #{event.name.upcase} - #{event.venue} - #{event.time}"
     end
+  end
+
+  def event_menu
+    puts "To see more info about an event, please enter the number"
+    input = gets.downcase.strip.to_i
+    SdEvents::Events.find(input)
+      puts "Event: #{SdEvents::Events.all[input].name}"
+      puts "City: #{SdEvents::Events.all[input].city}"
+      puts "Category: #{SdEvents::Events.all[input].category}"
   end
 
 
