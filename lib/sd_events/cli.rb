@@ -17,39 +17,29 @@ class SdEvents::CLI
 
     input = gets.strip.downcase
     if input == "1"
-
-      if SdEvents::Events.create_morning_events.empty?
-        puts "Sorry, please check back tomorrow morning for morning events"
-      else
-        SdEvents::Events.create_morning_events
-        display_events
-      end
+      SdEvents::Events.create_morning_events
+      display_events
 
     elsif input == "2"
-
-      if SdEvents::Events.create_afternoon_events.empty?
-        puts "Sorry, please check back tomorrow afternoon for afternoon events"
-      else
-        SdEvents::Events.create_afternoon_events
-        display_events
-      end
+      SdEvents::Events.create_afternoon_events
+      display_events
 
     elsif input == "3"
-      if SdEvents::Events.create_evening_events.empty?
-        puts "Sorry, day is over! Check back tomorrow for more events"
-      else
-        SdEvents::Events.create_evening_events
-        display_events
-      end
-      
+      SdEvents::Events.create_evening_events
+      display_events
+
+    elsif input == "list"
+      list_menu
+
     else
-      "Not sure what you're asking, please enter a valid number choice."
+      "Not sure what you're asking, please enter a valid number choice or type list to see menu again."
     end
+
   end
 
   def display_events
     SdEvents::Events.all.each.with_index(1) do |event, i|
-      puts "#{i}. #{event.name.upcase} - #{event.time} - #{event.venue}"
+      puts "#{i}. #{event.name.upcase} - #{event.venue} - #{event.time}"
     end
   end
 
