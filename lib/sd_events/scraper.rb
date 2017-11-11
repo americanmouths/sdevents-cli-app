@@ -22,6 +22,8 @@ end
         new_event.name = attribute.css("h4").text.strip
         new_event.venue = attribute.css("h5").text.strip
         new_event.time = event.css(".time").first.text.strip
+        new_event.city = event.css(".city").first.text.strip
+        new_event.category = event.css("td.category").first.text.strip
     end
   end
 end
