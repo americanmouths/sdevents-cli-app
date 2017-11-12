@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["shiverr@gmail.com"]
 
   spec.summary       = "Listing of events happening in San Diego today"
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/americanmouths/sdevents-cli-app"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
