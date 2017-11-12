@@ -10,7 +10,7 @@ Install it yourself as:
 
 ## Usage
 
-To see all current events happening in San Diego per the San Diego Reader website and see more detailed information about each event.
+Run 'sd-events' after installing the gem.
 
 ## Development
 
