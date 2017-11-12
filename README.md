@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To see all current events happening in San Diego per the San Diego Reader website and see more detailed information about each event.
 
 ## Development
 
