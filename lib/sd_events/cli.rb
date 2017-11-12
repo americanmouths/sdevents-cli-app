@@ -13,14 +13,14 @@ class SdEvents::CLI
 
   def list_menu
 
-    puts ""
     puts "Hello, the time is now #{Time.now}."
     puts "Please select which events you would like to see or type 'exit'"
+    puts ""
     puts "1. Morning Events"
     puts "2. Afternoon Events"
     puts "3. Evening Events"
     puts "4. Late Night Events"
-    puts = ""
+    puts ""
 
     input = gets.strip.downcase
 
@@ -48,19 +48,24 @@ class SdEvents::CLI
       goodbye
 
     else
-        "Not sure what you're asking, please enter a valid number choice or type list to see menu again."
+        puts "Not sure what you're asking, here is the menu again:"
+        list_menu
     end
   end
 
   def display_events
     SdEvents::Events.all.each.with_index(1) do |event, i|
-      puts "#{i}. #{event.name.upcase} - #{event.venue} - #{event.time}"
+      puts "#{i}."
+      puts "Event: #{event.name.upcase}"
+      puts "Venue: #{event.venue}"
+      puts "Time: #{event.time}"
+      puts ""
     end
   end
 
   def event_menu
     puts ""
-    puts "To see more info about an event, please select the number of the event"
+    puts "To see more info about an event, please select the number of the event:"
     input = gets.downcase.strip.to_i-1
     SdEvents::Events.find(input)
       puts ""
@@ -68,7 +73,7 @@ class SdEvents::CLI
       puts "City: #{SdEvents::Events.all[input].city}"
       puts "Category: #{SdEvents::Events.all[input].category}"
       puts ""
-      puts "To see the menu again, type 'menu' or type 'exit' to exit"
+      puts "To see the menu again, type 'menu' or to exit type 'exit':"
         new_input = gets.downcase.strip
         if new_input == "menu"
           list_menu
@@ -82,7 +87,7 @@ class SdEvents::CLI
     puts "Uh oh, looks like there are no events for that time..."
     puts "Please check back tomorrow for more events"
     puts ""
-    puts "To see the menu again, type 'menu'"
+    puts "To see the menu again, type 'menu':"
     input = gets.downcase.strip
     if input == "menu"
       self.new.call
@@ -92,6 +97,5 @@ class SdEvents::CLI
   def goodbye
     puts "Thanks for visiting SD Events!"
   end
-
 
 end
