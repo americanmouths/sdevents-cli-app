@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "sd_events"
+require_relative "../lib/sd_events"
 
 SdEvents::CLI.new.call
