@@ -13,6 +13,7 @@ class SdEvents::CLI
     puts "1. Morning Events"
     puts "2. Afternoon Events"
     puts "3. Evening Events"
+    puts "4. Nighttime Events"
     puts = ""
 
     input = gets.strip.downcase
@@ -28,6 +29,12 @@ class SdEvents::CLI
     elsif input == "3"
       SdEvents::Events.create_evening_events
       display_events
+      event_menu
+
+    elsif input == "4"
+      SdEvents::Events.create_night_events
+      display_events
+      event_menu
 
     elsif input == "list"
       list_menu
@@ -46,7 +53,7 @@ class SdEvents::CLI
 
   def event_menu
     puts "To see more info about an event, please enter the number"
-    input = gets.downcase.strip.to_i
+    input = gets.downcase.strip.to_i-1
     SdEvents::Events.find(input)
       puts "Event: #{SdEvents::Events.all[input].name}"
       puts "City: #{SdEvents::Events.all[input].city}"
