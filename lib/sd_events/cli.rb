@@ -6,17 +6,16 @@ class SdEvents::CLI
 
   def start
     puts ""
-    puts "******* Events Happening Right Now in San Diego **********"
+    puts "******* Events Happening Now in San Diego *******"
     puts ""
     list_menu
   end
 
   def list_menu
-    input = nil
-    while input != "exit"
 
     puts ""
-    puts "Hello, the time is now #{Time.now}. Would you like to see:"
+    puts "Hello, the time is now #{Time.now}."
+    puts "Please select which events you would like to see or type 'exit'"
     puts "1. Morning Events"
     puts "2. Afternoon Events"
     puts "3. Evening Events"
@@ -24,6 +23,7 @@ class SdEvents::CLI
     puts = ""
 
     input = gets.strip.downcase
+
     if input == "1"
       SdEvents::Events.create_morning_events
       display_events
@@ -44,13 +44,12 @@ class SdEvents::CLI
       display_events
       event_menu
 
-    elsif input == "list"
-      list_menu
+    elsif input == "exit"
+      goodbye
 
     else
-      "Not sure what you're asking, please enter a valid number choice or type list to see menu again."
+        "Not sure what you're asking, please enter a valid number choice or type list to see menu again."
     end
-
   end
 
   def display_events
@@ -69,10 +68,12 @@ class SdEvents::CLI
       puts "City: #{SdEvents::Events.all[input].city}"
       puts "Category: #{SdEvents::Events.all[input].category}"
       puts ""
-      puts "To see the menu again, type 'menu'"
+      puts "To see the menu again, type 'menu' or type 'exit' to exit"
         new_input = gets.downcase.strip
         if new_input == "menu"
           list_menu
+        elsif new_input == "exit"
+          goodbye
         end
     end
 
@@ -86,6 +87,10 @@ class SdEvents::CLI
     if input == "menu"
       self.new.call
     end
+  end
+
+  def goodbye
+    puts "Thanks for visiting SD Events!"
   end
 
 
