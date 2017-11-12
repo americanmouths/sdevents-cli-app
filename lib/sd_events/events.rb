@@ -1,41 +1,50 @@
 class SdEvents::Events
-  attr_accessor :name, :venue, :time
+  attr_accessor :name, :venue, :city, :area, :category, :time
   @@all = []
 
   def initialize
     @name = name
     @venue = venue
     @time = time
+    @city = city
+    @category = category
     @@all << self
-  end
-
-  def self.save
-    @@all << self
-  end
-
-  #def self.create_from_collection(events_array)
-    #Event.new.tap do |event|
-    #events_array.each do |event_hash|
-      #event_hash.each do
-    #self.new(event_hash)
-    #end
-  #end
-
-  def self.create_morning_events
-    SdEvents::Scraper.scrape_morning
-  end
-
-  def self.create_afternoon_events
-    SdEvents::Scraper.scrape_afternoon
-  end
-
-  def self.create_evening_events
-    SdEvents::Scraper.scrape_evening
   end
 
   def self.all
     @@all
   end
 
+  def self.find(id)
+    self.all[id-1]
+  end
+
+  def self.create_morning_events
+    SdEvents::Scraper.scrape_morning
+    if @@all.empty?
+      puts "Please check back tomorrow morning for more events"
+    end
+  end
+
+  def self.create_afternoon_events
+    SdEvents::Scraper.scrape_afternoon
+    if @@all.empty?
+      puts "Please check back tomorrow afternoon for more events"
+    end
+  end
+
+  def self.create_evening_events
+    SdEvents::Scraper.scrape_evening
+    if @@all.empty?
+      puts "Please check back tomorrow evening for more events"
+    end
+  end
+
+  def self.create_night_events
+    SdEvents::Scraper.scrape_night
+    if @@all.empty?
+      puts "Please check back tomorrow night for more events"
+    end
+  end
 
 end
