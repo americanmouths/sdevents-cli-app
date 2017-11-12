@@ -6,8 +6,8 @@ require "sd_events/version"
 Gem::Specification.new do |spec|
   spec.name          = "sd_events"
   spec.version       = SdEvents::VERSION
-  spec.authors       = ["americanmouths"]
-  spec.email         = ["shiverr@gmail.com"]
+  spec.authors       = ["Kayla Hansen"]
+  spec.email         = "shiverr@gmail.com"
 
   spec.summary       = "Listing of events happening in San Diego today"
   spec.homepage      = "https://github.com/americanmouths/sdevents-cli-app"
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata["allowed_push_host"] = "https://rubygems.org"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
