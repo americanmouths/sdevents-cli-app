@@ -1,6 +1,10 @@
 class SdEvents::CLI
 
   def call
+    start
+  end
+
+  def start
     puts ""
     puts "******* Events Happening Right Now in San Diego **********"
     puts ""
@@ -8,18 +12,22 @@ class SdEvents::CLI
   end
 
   def list_menu
+    input = nil
+    while input != "exit"
+
     puts ""
     puts "Hello, the time is now #{Time.now}. Would you like to see:"
     puts "1. Morning Events"
     puts "2. Afternoon Events"
     puts "3. Evening Events"
-    puts "4. Nighttime Events"
+    puts "4. Late Night Events"
     puts = ""
 
     input = gets.strip.downcase
     if input == "1"
       SdEvents::Events.create_morning_events
       display_events
+      event_menu
 
     elsif input == "2"
       SdEvents::Events.create_afternoon_events
@@ -52,12 +60,32 @@ class SdEvents::CLI
   end
 
   def event_menu
-    puts "To see more info about an event, please enter the number"
+    puts ""
+    puts "To see more info about an event, please select the number of the event"
     input = gets.downcase.strip.to_i-1
     SdEvents::Events.find(input)
+      puts ""
       puts "Event: #{SdEvents::Events.all[input].name}"
       puts "City: #{SdEvents::Events.all[input].city}"
       puts "Category: #{SdEvents::Events.all[input].category}"
+      puts ""
+      puts "To see the menu again, type 'menu'"
+        new_input = gets.downcase.strip
+        if new_input == "menu"
+          list_menu
+        end
+    end
+
+  def self.no_events
+    puts ""
+    puts "Uh oh, looks like there are no events for that time..."
+    puts "Please check back tomorrow for more events"
+    puts ""
+    puts "To see the menu again, type 'menu'"
+    input = gets.downcase.strip
+    if input == "menu"
+      self.new.call
+    end
   end
 
 
