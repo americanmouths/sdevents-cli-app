@@ -22,28 +22,28 @@ class SdEvents::Events
   def self.create_morning_events
     SdEvents::Scraper.scrape_morning
     if @@all.empty?
-      puts "Please check back tomorrow morning for more events"
+      SdEvents::CLI.no_events
     end
   end
 
   def self.create_afternoon_events
     SdEvents::Scraper.scrape_afternoon
     if @@all.empty?
-      puts "Please check back tomorrow afternoon for more events"
+      SdEvents::CLI.no_events
     end
   end
 
   def self.create_evening_events
     SdEvents::Scraper.scrape_evening
     if @@all.empty?
-      puts "Please check back tomorrow evening for more events"
+      SdEvents::CLI.no_events
     end
   end
 
   def self.create_night_events
     SdEvents::Scraper.scrape_night
     if @@all.empty?
-      puts "Please check back tomorrow night for more events"
+      SdEvents::CLI.no_events
     end
   end
 
