@@ -4,17 +4,7 @@ This Ruby Gem provides a CLI to view the current events happening in San Diego, 
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'sd_events'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install it yourself as:
 
     $ gem install sd_events
 
