@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Listing of events happening in San Diego today"
   spec.homepage      = "https://github.com/americanmouths/sdevents-cli-app"
   spec.license       = "MIT"
+  spec.executables << 'sd-events'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -28,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
