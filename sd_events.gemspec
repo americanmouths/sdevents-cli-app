@@ -13,8 +13,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.executables << 'sd-events'
   spec.files         = ["lib/sd_events.rb", "lib/sd_events/cli.rb", "lib/sd_events/scraper.rb", "lib/sd_events/version.rb", "lib/sd_events/events.rb"]
-
-
+  spec.require_paths = ["lib"]
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", ">= 0"
