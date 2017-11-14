@@ -10,6 +10,10 @@ class SdEvents::Events
     @@all
   end
 
+  def self.clear
+    @@all.clear
+  end
+
   def self.find(id)
     self.all[id-1]
   end
