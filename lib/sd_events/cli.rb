@@ -51,6 +51,7 @@ class SdEvents::CLI
         puts "Not sure what you're asking, here is the menu again:"
         list_menu
     end
+
   end
 
   def display_events
@@ -66,36 +67,43 @@ class SdEvents::CLI
   def event_menu
     puts ""
     puts "To see more info about an event, please select the number of the event:"
-    input = gets.downcase.strip.to_i-1
-    SdEvents::Events.find(input)
-      puts ""
-      puts "Event: #{SdEvents::Events.all[input].name}"
-      puts "City: #{SdEvents::Events.all[input].city}"
-      puts "Category: #{SdEvents::Events.all[input].category}"
-      puts ""
-      puts "To see the menu again, type 'menu' or to exit type 'exit':"
-        new_input = gets.downcase.strip
-        if new_input == "menu"
-          list_menu
-        elsif new_input == "exit"
-          goodbye
-        end
+    input = gets.downcase.to_i-1
+      SdEvents::Events.find(input)
+        puts ""
+        puts "Event: #{SdEvents::Events.all[input].name}"
+        puts "City: #{SdEvents::Events.all[input].city}"
+        puts "Category: #{SdEvents::Events.all[input].category}"
+        puts ""
+        puts "To see the menu again, type 'menu' or to exit type 'exit':"
+        SdEvents::Events.all.clear
+          new_input = gets.downcase.strip
+          if new_input == "menu"
+            list_menu
+          elsif new_input == "exit"
+            goodbye
+          end
     end
 
   def self.no_events
     puts ""
     puts "Uh oh, looks like there are no events for that time..."
-    puts "Please check back tomorrow for more events"
+    puts "Please return tomorrow for more events."
     puts ""
-    puts "To see the menu again, type 'menu':"
+    puts "To see the menu again, type 'menu' or type 'exit':"
     input = gets.downcase.strip
     if input == "menu"
-      self.new.call
+      self.new.list_menu
+    elsif input == "exit"
+      self.new.goodbye
+    else
+      "Not sure what you're asking, here is the menu again:"
+      self.new.list_menu
     end
   end
 
   def goodbye
     puts "Thanks for visiting SD Events!"
+    exit
   end
 
 end
