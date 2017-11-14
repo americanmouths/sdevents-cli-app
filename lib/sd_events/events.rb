@@ -3,11 +3,6 @@ class SdEvents::Events
   @@all = []
 
   def initialize
-    @name = name
-    @venue = venue
-    @time = time
-    @city = city
-    @category = category
     @@all << self
   end
 
