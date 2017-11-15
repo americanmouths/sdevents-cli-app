@@ -18,32 +18,30 @@ class SdEvents::Events
     self.all[id-1]
   end
 
-  def self.create_morning_events
-    SdEvents::Scraper.scrape_morning
+  def self.empty?
     if @@all.empty?
       SdEvents::CLI.no_events
     end
+  end
+
+  def self.create_morning_events
+    SdEvents::Scraper.scrape_morning
+    self.empty?
   end
 
   def self.create_afternoon_events
     SdEvents::Scraper.scrape_afternoon
-    if @@all.empty?
-      SdEvents::CLI.no_events
-    end
+    self.empty?
   end
 
   def self.create_evening_events
     SdEvents::Scraper.scrape_evening
-    if @@all.empty?
-      SdEvents::CLI.no_events
-    end
+    self.empty?
   end
 
   def self.create_night_events
     SdEvents::Scraper.scrape_night
-    if @@all.empty?
-      SdEvents::CLI.no_events
-    end
+    self.empty?
   end
 
 end
