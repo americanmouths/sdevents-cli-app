@@ -69,7 +69,7 @@ class SdEvents::CLI
       SdEvents::Events.find(input)
       puts ""
       puts "Event: #{SdEvents::Events.all[input].name}"
-      puts "City: #{SdEvents::Events.all[input].city}"
+      puts "City: #{SdEvents::Events.all[input].location}"
       puts "Category: #{SdEvents::Events.all[input].category}"
       puts ""
       puts "To see the menu again, type 'menu' or to exit type 'exit':"

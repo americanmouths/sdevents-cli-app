@@ -9,7 +9,7 @@ class SdEvents::Scraper
     new_event.name = attribute.css(".title").css("h4").text.strip
     new_event.venue = attribute.css(".title").css("h5").text.strip
     new_event.time = attribute.css("td.time").text.strip
-    new_event.city = attribute.css("td.city").text.strip
+    new_event.location = attribute.css("td.city").text.strip
     new_event.category = attribute.css("td.category").text.strip
   end
 

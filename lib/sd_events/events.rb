@@ -1,5 +1,5 @@
 class SdEvents::Events
-  attr_accessor :name, :venue, :city, :area, :category, :time
+  attr_accessor :name, :venue, :location, :area, :category, :time
   @@all = []
 
   def initialize
