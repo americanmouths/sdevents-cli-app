@@ -12,7 +12,6 @@ class SdEvents::CLI
   end
 
   def list_menu
-
     puts "Hello, the time is now #{Time.now}."
     puts "Please select which events you would like to see or type 'exit'"
     puts ""
@@ -48,10 +47,9 @@ class SdEvents::CLI
       goodbye
 
     else
-        puts "Not sure what you're asking, here is the menu again:"
-        list_menu
+      puts "Not sure what you're asking, here is the menu again:"
+      list_menu
     end
-
   end
 
   def display_events
@@ -69,19 +67,19 @@ class SdEvents::CLI
     puts "To see more info about an event, please select the number of the event:"
     input = gets.downcase.to_i-1
       SdEvents::Events.find(input)
-        puts ""
-        puts "Event: #{SdEvents::Events.all[input].name}"
-        puts "City: #{SdEvents::Events.all[input].city}"
-        puts "Category: #{SdEvents::Events.all[input].category}"
-        puts ""
-        puts "To see the menu again, type 'menu' or to exit type 'exit':"
-        SdEvents::Events.all.clear
-          new_input = gets.downcase.strip
-          if new_input == "menu"
-            list_menu
-          elsif new_input == "exit"
-            goodbye
-          end
+      puts ""
+      puts "Event: #{SdEvents::Events.all[input].name}"
+      puts "City: #{SdEvents::Events.all[input].city}"
+      puts "Category: #{SdEvents::Events.all[input].category}"
+      puts ""
+      puts "To see the menu again, type 'menu' or to exit type 'exit':"
+      SdEvents::Events.all.clear
+        new_input = gets.downcase.strip
+        if new_input == "menu"
+          list_menu
+        elsif new_input == "exit"
+          goodbye
+        end
     end
 
   def self.no_events
