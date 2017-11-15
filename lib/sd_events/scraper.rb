@@ -4,15 +4,19 @@ class SdEvents::Scraper
     @@doc = Nokogiri::HTML(open("https://www.sandiegoreader.com/events/#"))
   end
 
+  def self.scrape_events(attribute)
+    new_event = SdEvents::Events.new
+    new_event.name = attribute.css(".title").css("h4").text.strip
+    new_event.venue = attribute.css(".title").css("h5").text.strip
+    new_event.time = attribute.css("td.time").text.strip
+    new_event.city = attribute.css("td.city").text.strip
+    new_event.category = attribute.css("td.category").text.strip
+  end
+
   def self.scrape_morning
     self.scrape.css("div#body div#content.content div.daypart_morning .event_list").each do |event|
       event.css("tr").collect do |attribute|
-        new_event = SdEvents::Events.new
-        new_event.name = attribute.css(".title").css("h4").text.strip
-        new_event.venue = attribute.css(".title").css("h5").text.strip
-        new_event.time = attribute.css("td.time").text.strip
-        new_event.city = attribute.css("td.city").text.strip
-        new_event.category = attribute.css("td.category").text.strip
+        self.scrape_events(attribute)
       end
     end
   end
@@ -20,12 +24,7 @@ class SdEvents::Scraper
   def self.scrape_afternoon
     self.scrape.css("div#body div#content.content div.daypart_afternoon .event_list").each do |event|
       event.css("tr").collect do |attribute|
-        new_event = SdEvents::Events.new
-        new_event.name = attribute.css(".title").css("h4").text.strip
-        new_event.venue = attribute.css(".title").css("h5").text.strip
-        new_event.time = attribute.css("td.time").text.strip
-        new_event.city = attribute.css("td.city").text.strip
-        new_event.category = attribute.css("td.category").text.strip
+        self.scrape_events(attribute)
       end
     end
   end
@@ -33,12 +32,7 @@ class SdEvents::Scraper
   def self.scrape_evening
     self.scrape.css("div#body div#content.content div.daypart_evening .event_list").each do |event|
       event.css("tr").collect do |attribute|
-        new_event = SdEvents::Events.new
-        new_event.name = attribute.css(".title").css("h4").text.strip
-        new_event.venue = attribute.css(".title").css("h5").text.strip
-        new_event.time = attribute.css("td.time").text.strip
-        new_event.city = attribute.css("td.city").text.strip
-        new_event.category = attribute.css("td.category").text.strip
+        self.scrape_events(attribute)
       end
     end
   end
@@ -46,12 +40,7 @@ class SdEvents::Scraper
   def self.scrape_night
     self.scrape.css("div#body div#content.content div.daypart_night .event_list").each do |event|
       event.css("tr").collect do |attribute|
-        new_event = SdEvents::Events.new
-        new_event.name = attribute.css(".title").css("h4").text.strip
-        new_event.venue = attribute.css(".title").css("h5").text.strip
-        new_event.time = attribute.css("td.time").text.strip
-        new_event.city = attribute.css("td.city").text.strip
-        new_event.category = attribute.css("td.category").text.strip
+        self.scrape_events(attribute)
       end
     end
   end
