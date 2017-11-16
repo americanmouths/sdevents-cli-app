@@ -63,24 +63,33 @@ class SdEvents::CLI
   end
 
   def event_menu
+    input = nil
+    while input != "exit"
     puts ""
-    puts "To see more info about an event, please select the number of the event:"
-    input = gets.downcase.to_i-1
-      SdEvents::Events.find(input)
-      puts ""
-      puts "Event: #{SdEvents::Events.all[input].name}"
-      puts "City: #{SdEvents::Events.all[input].location}"
-      puts "Category: #{SdEvents::Events.all[input].category}"
-      puts ""
-      puts "To see the menu again, type 'menu' or to exit type 'exit':"
-      SdEvents::Events.all.clear
-        new_input = gets.downcase.strip
-        if new_input == "menu"
-          list_menu
-        elsif new_input == "exit"
-          goodbye
-        end
+    puts "To see more info about an event, please select the number of the event"
+    puts ""
+    puts "OR type 'menu' to see the menu again"
+    puts "OR type 'exit' to exit the program"
+    puts ""
+    input = gets.strip
+      if input == "menu"
+        list_menu
+      elsif input.to_i.between?(1, SdEvents::Events.all.size)
+        event = SdEvents::Events.find(input)
+        puts ""
+        puts "Event: #{event.name}"
+        puts "Location: #{event.location}"
+        puts "Category: #{event.category}"
+        puts ""
+        SdEvents::Events.all.clear
+      elsif input == "exit"
+        goodbye
+      else
+        puts "Not sure what you're asking, here is the menu again:"
+        list_menu
+      end
     end
+  end
 
   def self.no_events
     puts ""
