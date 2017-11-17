@@ -1,5 +1,5 @@
 class SdEvents::Events
-  attr_accessor :name, :venue, :location, :area, :category, :time
+  attr_accessor :name, :venue, :location, :category, :time
   @@all = []
 
   def initialize
@@ -24,24 +24,10 @@ class SdEvents::Events
     end
   end
 
-  def self.create_morning_events
-    SdEvents::Scraper.scrape_morning
+  def self.create_daypart(event_time) #=> "afternoon"
+    SdEvents::Scraper.scrape_daypart(event_time) #=> "SdEvents::Scraper.scrape_daypart("afternoon")"
     self.empty?
   end
 
-  def self.create_afternoon_events
-    SdEvents::Scraper.scrape_afternoon
-    self.empty?
-  end
-
-  def self.create_evening_events
-    SdEvents::Scraper.scrape_evening
-    self.empty?
-  end
-
-  def self.create_night_events
-    SdEvents::Scraper.scrape_night
-    self.empty?
-  end
 
 end
