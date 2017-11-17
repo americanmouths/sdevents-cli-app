@@ -24,22 +24,22 @@ class SdEvents::CLI
     input = gets.strip.downcase
 
     if input == "1"
-      SdEvents::Events.create_morning_events
+      SdEvents::Events.create_daypart("morning")
       display_events
       event_menu
 
     elsif input == "2"
-      SdEvents::Events.create_afternoon_events
+      SdEvents::Events.create_daypart("afternoon")
       display_events
       event_menu
 
     elsif input == "3"
-      SdEvents::Events.create_evening_events
+      SdEvents::Events.create_evening("evening")
       display_events
       event_menu
 
     elsif input == "4"
-      SdEvents::Events.create_night_events
+      SdEvents::Events.create_evening("night")
       display_events
       event_menu
 
