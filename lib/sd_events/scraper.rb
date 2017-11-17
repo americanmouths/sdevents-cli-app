@@ -13,32 +13,8 @@ class SdEvents::Scraper
     new_event.category = attribute.css("td.category").text.strip
   end
 
-  def self.scrape_morning
-    self.scrape.css("div#body div#content.content div.daypart_morning .event_list").each do |event|
-      event.css("tr").collect do |attribute|
-        self.scrape_events(attribute)
-      end
-    end
-  end
-
-  def self.scrape_afternoon
-    self.scrape.css("div#body div#content.content div.daypart_afternoon .event_list").each do |event|
-      event.css("tr").collect do |attribute|
-        self.scrape_events(attribute)
-      end
-    end
-  end
-
-  def self.scrape_evening
-    self.scrape.css("div#body div#content.content div.daypart_evening .event_list").each do |event|
-      event.css("tr").collect do |attribute|
-        self.scrape_events(attribute)
-      end
-    end
-  end
-
-  def self.scrape_night
-    self.scrape.css("div#body div#content.content div.daypart_night .event_list").each do |event|
+  def self.scrape_daypart(event_time)
+    self.scrape.css("div#body div#content.content div.daypart_#{event_time} .event_list").each do |event|
       event.css("tr").collect do |attribute|
         self.scrape_events(attribute)
       end
