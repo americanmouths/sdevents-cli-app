@@ -6,19 +6,19 @@ class SdEvents::CLI
 
   def start
     puts ""
-    puts "******* Events Happening Now in San Diego *******"
+    puts "******* Events Happening Now in San Diego *******".colorize(:blue)
     puts ""
     list_menu
   end
 
   def list_menu
-    puts "Hello, the time is now #{Time.now}."
-    puts "Please select which events you would like to see or type 'exit'"
+    puts "Hello, the time is now #{Time.now}.".colorize(:light_blue)
+    puts "Please select which events you would like to see or type 'exit'".colorize(:red)
     puts ""
-    puts "1. Morning Events"
-    puts "2. Afternoon Events"
-    puts "3. Evening Events"
-    puts "4. Late Night Events"
+    puts "1. Morning Events".colorize(:green)
+    puts "2. Afternoon Events".colorize(:green)
+    puts "3. Evening Events".colorize(:green)
+    puts "4. Late Night Events".colorize(:green)
     puts ""
 
     input = gets.strip.downcase
@@ -34,12 +34,12 @@ class SdEvents::CLI
       event_menu
 
     elsif input == "3"
-      SdEvents::Events.create_evening("evening")
+      SdEvents::Events.create_daypart("evening")
       display_events
       event_menu
 
     elsif input == "4"
-      SdEvents::Events.create_evening("night")
+      SdEvents::Events.create_daypart("night")
       display_events
       event_menu
 
@@ -47,7 +47,7 @@ class SdEvents::CLI
       goodbye
 
     else
-      puts "Not sure what you're asking, here is the menu again:"
+      puts "Not sure what you're asking, here is the menu again:".colorize(:red)
       list_menu
     end
   end
@@ -55,9 +55,9 @@ class SdEvents::CLI
   def display_events
     SdEvents::Events.all.each.with_index(1) do |event, i|
       puts "#{i}."
-      puts "Event: #{event.name.upcase}"
-      puts "Venue: #{event.venue}"
-      puts "Time: #{event.time}"
+      puts "Event: #{event.name.upcase}".colorize(:magenta)
+      puts "Venue: #{event.venue}".colorize(:magenta)
+      puts "Time: #{event.time}".colorize(:magenta)
       puts ""
     end
   end
@@ -66,10 +66,10 @@ class SdEvents::CLI
     input = nil
     while input != "exit"
     puts ""
-    puts "To see more info about an event, please select the number of the event"
+    puts "To see more info about an event, please select the number of the event".colorize(:red)
     puts ""
-    puts "OR type 'menu' to see the menu again"
-    puts "OR type 'exit' to exit the program"
+    puts "OR type 'menu' to see the menu again".colorize(:red)
+    puts "OR type 'exit' to exit the program".colorize(:red)
     puts ""
     input = gets.strip
       if input == "menu"
@@ -77,15 +77,15 @@ class SdEvents::CLI
       elsif input.to_i.between?(1, SdEvents::Events.all.size)
         event = SdEvents::Events.find(input)
         puts ""
-        puts "Event: #{event.name}"
-        puts "Location: #{event.location}"
-        puts "Category: #{event.category}"
+        puts "Event: #{event.name}".colorize(:magenta)
+        puts "Location: #{event.location}".colorize(:magenta)
+        puts "Category: #{event.category}".colorize(:magenta)
         puts ""
         SdEvents::Events.all.clear
       elsif input == "exit"
         goodbye
       else
-        puts "Not sure what you're asking, here is the menu again:"
+        puts "Not sure what you're asking, here is the menu again:".colorize(:red)
         list_menu
       end
     end
@@ -93,23 +93,23 @@ class SdEvents::CLI
 
   def self.no_events
     puts ""
-    puts "Uh oh, looks like there are no events for that time..."
-    puts "Please return tomorrow for more events."
+    puts "Uh oh, looks like there are no events for that time...".colorize(:magenta)
+    puts "Please return tomorrow for more events.".colorize(:magenta)
     puts ""
-    puts "To see the menu again, type 'menu' or type 'exit':"
+    puts "To see the menu again, type 'menu' or type 'exit':".colorize(:red)
     input = gets.downcase.strip
     if input == "menu"
       self.new.list_menu
     elsif input == "exit"
       self.new.goodbye
     else
-      "Not sure what you're asking, here is the menu again:"
+      "Not sure what you're asking, here is the menu again:".colorize(:red)
       self.new.list_menu
     end
   end
 
   def goodbye
-    puts "Thanks for visiting SD Events!"
+    puts "Thanks for visiting SD Events!".colorize(:blue)
     exit
   end
 
