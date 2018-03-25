@@ -21,6 +21,7 @@ class SdEvents::CLI
     puts "4. Late Night Events".colorize(:green)
     puts ""
 
+    SdEvents::Events.all.clear
     input = gets.strip.downcase
 
     if input == "1"
